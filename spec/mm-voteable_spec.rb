@@ -17,14 +17,14 @@ describe "Vote" do
     @vote.should be_valid
   end
   
-  it "should be valid if already voted" do
-    voteable = VoteableWithCallback.create(:user_id => @user.id)
-    vote = voteable.votes.build(:value => 1, :voter => @user)
+  it "should not be valid if already voted" do
+    @vote.save
+    vote = @voteable.votes.build(:value => 1, :voter => @user)
     
     vote.should_not be_valid
   end
   
-  it "should be valid if voteable owner" do
+  it "should not be valid if voteable owner" do
     voteable = VoteableWithCallback.create(:user_id => @user.id)
     vote = voteable.votes.build(:value => 1, :voter => @user)
     
