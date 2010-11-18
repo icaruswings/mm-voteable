@@ -25,7 +25,8 @@ Then add the voteable plugin to you MongoMapper::Document
       end
     end
     
-You must implement the on_add_comment callback! - however it can be an empty implementation
+You must implement the on_add_vote callback! -
+It can be an empty implementation, but I use it to create ActivityStream Items after someone votes on a NewsArticle
   
     @post = Post.create
     @voter = User.create
@@ -37,9 +38,18 @@ You must implement the on_add_comment callback! - however it can be an empty imp
     @posts.votes #=> [<Vote>]
     @posts.voters #=> [<User>]
     @posts.voters.include?(@voter) #=> true
+    
 
-== Assumptions
-  * your voteable model has a 'user' association
+== Limitations
+
+I made this plugin for voting up and down on articles (kind of like stack overflow) so there are currently some limitations
+
+* the vote value can only be one of 1 or -1
+* the voteable model has a 'user' belongs_to association
+* a user can only vote once on a voteable item
+* the owner of a voteable item, cannot vote
+
+Feel free to code any of these limitations out and send me a patch, this is just how I have used it so far
 
 
 == Contributing to mm-voteable
