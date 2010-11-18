@@ -1,6 +1,43 @@
 = mm-voteable
 
-Description goes here.
+A very simple mongomapper plugin to add vote up/down functionality to your application.
+
+
+== Usage
+
+Install the gem
+  
+    gem install mm-voteable
+
+
+Or add it to your Gemfile
+
+    gem 'mm-voteable'
+    
+Then add the voteable plugin to you MongoMapper::Document
+
+    class Post
+      include MongoMapper::Document
+      plugin MongoMapper::Plugins::Voteable
+
+      def on_add_vote(comment)
+        do something when a comment is added...
+      end
+    end
+    
+You must implement the on_add_comment callback! - however it can be an empty implementation
+  
+    @post = Post.create
+    @voter = User.create
+  
+    @post.add_vote!(1, @user)
+    @post.add_vote!(1, @user)
+  
+    @post.votes_count #=> 2
+    @posts.votes #=> [<Vote>]
+    @posts.voters #=> [<User>]
+    @posts.voters.include?(@voter) #=> true
+
 
 == Contributing to mm-voteable
  

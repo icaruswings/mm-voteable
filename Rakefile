@@ -15,7 +15,7 @@ Jeweler::Tasks.new do |gem|
   gem.name = "mm-voteable"
   gem.homepage = "http://github.com/icaruswings/mm-voteable"
   gem.license = "MIT"
-  gem.summary = %Q{A very simple mongomapper plugin to add vote up/down functionaity to your application}
+  gem.summary = %Q{A very simple mongomapper plugin to add vote up/down functionality to your application}
   gem.description = %Q{A very simple mongomapper plugin to add vote up/down functionality to your application}
   gem.email = "luke@icaruswings.com"
   gem.authors = ["Luke Cunningham"]
