@@ -38,6 +38,9 @@ You must implement the on_add_comment callback! - however it can be an empty imp
     @posts.voters #=> [<User>]
     @posts.voters.include?(@voter) #=> true
 
+== Assumptions
+  * your voteable model has a 'user' association
+
 
 == Contributing to mm-voteable
  

@@ -10,7 +10,7 @@ module MongoMapper
           key :votes_average, Integer, :default => 0
           key :voter_ids, Array, :typecast => 'ObjectId'
         
-          many :votes, :as => "voteable", :dependent => :destroy
+          many :votes, :as => 'voteable', :dependent => :destroy
 
           def voteable?; true; end
         end
@@ -19,18 +19,13 @@ module MongoMapper
       module InstanceMethods
       
         def add_vote!(vote_value, voter)
-          
-          vote = self.votes.build({
-            :value => vote_value,
-            :voter => voter
-          })
-          
+          vote = self.votes.build(:value => vote_value, :voter => voter)
+
           return false unless vote.valid?
+          vote.save
           
           self.class.push_uniq(self.id, 'voter_ids' => voter.id)
-          self.class.increment(self.id, 'votes_count' => 1, 'votes_average' => vote_value.to_i)
-          
-          self.reload
+          self.increment('votes_count' => 1, 'votes_average' => vote_value.to_i)
           
           on_add_vote(vote)
         end

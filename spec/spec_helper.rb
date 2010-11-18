@@ -32,7 +32,6 @@ RSpec.configure do |config|
   config.after(:each) do
     MongoMapper.database.collections.collect do |collection|
       unless %w(system.js system.indexes system.users).any? { |name| name == collection.name }
-        puts "Dropping #{collection.name}"
         MongoMapper.database.drop_collection(collection.name)
       end
     end
