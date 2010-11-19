@@ -20,8 +20,8 @@ Then add the voteable plugin to you MongoMapper::Document
       include MongoMapper::Document
       plugin MongoMapper::Plugins::Voteable
 
-      def on_add_vote(comment)
-        do something when a comment is added...
+      def on_add_vote(vote)
+        do something when a vote is added...
       end
     end
     
