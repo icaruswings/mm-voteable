@@ -4,13 +4,11 @@ class Vote
   key :voter_id, ObjectId, :required => true
   belongs_to :voter, :class_name => 'User'
 
-  key :value, Integer, :required => true
+  key :value, Integer, :required => true, :in => [1,-1]
 
   key :voteable_id, ObjectId, :required => true
   key :voteable_type, String, :required => true
   belongs_to :voteable, :polymorphic => true
-
-  validates_inclusion_of :value, :within => [1,-1]
 
   validate :should_be_unique
   validate :should_not_be_owner

@@ -24,6 +24,12 @@ describe "Vote" do
     vote.should_not be_valid
   end
   
+  it "should not be valid value is not one of 1 or -1" do
+    @vote.value = 3
+
+    @vote.should_not be_valid
+  end
+  
   it "should not be valid if voteable owner" do
     voteable = VoteableWithCallback.create(:user_id => @user.id)
     vote = voteable.votes.build(:value => 1, :voter => @user)
