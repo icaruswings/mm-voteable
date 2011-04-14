@@ -2,6 +2,8 @@
 
 A very simple mongomapper plugin to add vote up/down superpowers to your models.
 
+v1.2 is a mongomapper 0.9.0 update to support the new plugin system
+if you are using mongomapper 0.8.x please use version 1.1 of the gem
 
 == Usage
 

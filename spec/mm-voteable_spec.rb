@@ -38,12 +38,12 @@ describe "Vote" do
   end
   
   it "should have a belongs_to voteable association" do
-    @vote.voteable.association.should be_belongs_to
+    @vote.associations[:voteable].should be_a(MongoMapper::Plugins::Associations::BelongsToAssociation)
     @vote.voteable.should == @voteable
   end
   
   it "should have an associated voter" do
-    @vote.voter.association.should be_belongs_to
+    @vote.associations[:voter].should be_a(MongoMapper::Plugins::Associations::BelongsToAssociation)
     @vote.voter.should == @user
   end
 

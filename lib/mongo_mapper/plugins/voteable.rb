@@ -3,20 +3,19 @@ require File.join(File.dirname(__FILE__), 'voteable', 'vote')
 module MongoMapper
   module Plugins
     module Voteable
-
-      def self.configure(model)
-        model.class_eval do
-          key :votes_count, Integer, :default => 0
-          key :votes_average, Integer, :default => 0
-          key :voter_ids, Array, :typecast => 'ObjectId'
-        
-          many :votes, :as => 'voteable', :dependent => :destroy
-
-          def voteable?; true; end
-        end
+      extend ActiveSupport::Concern
+      
+      included do
+        key :votes_count, Integer, :default => 0
+        key :votes_average, Integer, :default => 0
+        key :voter_ids, Array, :typecast => 'ObjectId'
+      
+        many :votes, :as => 'voteable', :dependent => :destroy
       end
 
       module InstanceMethods
+
+        def voteable?; true; end
       
         def add_vote!(vote_value, voter)
           vote = self.votes.build(:value => vote_value, :voter => voter)

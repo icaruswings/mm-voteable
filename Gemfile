@@ -1,8 +1,8 @@
 source "http://rubygems.org"
 
 group :development do
-  gem 'bson_ext'
-  gem 'mongo_mapper'
+  gem 'bson_ext', '1.3.0'
+  gem 'mongo_mapper', '0.9.0'
   gem 'i18n'
   
   gem 'ruby-debug'
